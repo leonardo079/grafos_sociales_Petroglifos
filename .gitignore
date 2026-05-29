@@ -1,0 +1,54 @@
+# Entorno
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# PyTorch / modelos
+*.pt
+*.pth
+*.ckpt
+*.bin
+checkpoints/
+
+# Datos y almacenamiento local
+storage/data/
+storage/cache/
+*.db
+*.sqlite
+
+# Visualizaciones generadas
+graphs/output/
+*.html
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db

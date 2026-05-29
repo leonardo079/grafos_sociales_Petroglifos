@@ -1,0 +1,87 @@
+image_path,site_name,municipality,taxonomy,reference_name
+storage/reference_images/synthetic/syn_ant_0000.png,Gámeza,Gámeza,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0001.png,Gámeza,Gámeza,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_ant_0002.png,Villa de Leyva,Villa de Leyva,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0003.png,Villa de Leyva,Villa de Leyva,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_geo_0004.png,Villa de Leyva,Villa de Leyva,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0005.png,Villa de Leyva,Villa de Leyva,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0006.png,Chivor,Chivor,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0007.png,Chivor,Chivor,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0008.png,Sogamoso,Sogamoso,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0009.png,Sogamoso,Sogamoso,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0010.png,Soatá,Soatá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0011.png,Soatá,Soatá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0012.png,Monguí,Monguí,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0013.png,Monguí,Monguí,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_geo_0014.png,Monguí,Monguí,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0015.png,Monguí,Monguí,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0016.png,Tunja,Tunja,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0017.png,Tunja,Tunja,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_geo_0018.png,Chiquinquirá,Chiquinquirá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0019.png,Chiquinquirá,Chiquinquirá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0020.png,Ráquira,Ráquira,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0021.png,Ráquira,Ráquira,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0022.png,Tenza,Tenza,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0023.png,Tenza,Tenza,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0024.png,Piedras del Tunjo,Facatativá,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0025.png,Piedras del Tunjo,Facatativá,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0026.png,Piedras del Tunjo,Facatativá,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0027.png,Piedras del Tunjo,Facatativá,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_ant_0028.png,Supatá,Supatá,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0029.png,Supatá,Supatá,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_geo_0030.png,Supatá,Supatá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0031.png,Supatá,Supatá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_zoo_0032.png,Zipaquirá,Zipaquirá,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0033.png,Zipaquirá,Zipaquirá,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0034.png,Zipaquirá,Zipaquirá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0035.png,Zipaquirá,Zipaquirá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0036.png,Nemocón,Nemocón,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0037.png,Nemocón,Nemocón,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_ant_0038.png,La Mesa,La Mesa,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0039.png,La Mesa,La Mesa,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_geo_0040.png,La Mesa,La Mesa,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0041.png,La Mesa,La Mesa,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0042.png,Tibacuy,Tibacuy,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0043.png,Tibacuy,Tibacuy,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0044.png,Tibacuy,Tibacuy,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0045.png,Tibacuy,Tibacuy,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0046.png,Bojacá,Bojacá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0047.png,Bojacá,Bojacá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_zoo_0048.png,Bojacá,Bojacá,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0049.png,Bojacá,Bojacá,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0050.png,Guane,Barichara,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0051.png,Guane,Barichara,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0052.png,Jordán,San Gil,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0053.png,Jordán,San Gil,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0054.png,Jordán,San Gil,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0055.png,Jordán,San Gil,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_ant_0056.png,Cepitá,Cepitá,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0057.png,Cepitá,Cepitá,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0058.png,Cepitá,Cepitá,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0059.png,Cepitá,Cepitá,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0060.png,Charalá,Charalá,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0061.png,Charalá,Charalá,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_ant_0062.png,Charalá,Charalá,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0063.png,Charalá,Charalá,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_ant_0064.png,San Agustín,San Agustín,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0065.png,San Agustín,San Agustín,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0066.png,Isnos,Isnos,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0067.png,Isnos,Isnos,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_ant_0068.png,La Plata,La Plata,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0069.png,La Plata,La Plata,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0070.png,La Florida,La Florida,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0071.png,La Florida,La Florida,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_zoo_0072.png,Cumbal,Cumbal,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0073.png,Cumbal,Cumbal,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0074.png,Cumbal,Cumbal,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0075.png,Cumbal,Cumbal,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_zoo_0076.png,Ipiales,Ipiales,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0077.png,Ipiales,Ipiales,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_ant_0078.png,Santa Fe de Antioquia,Santa Fe de Antioquia,Antropomorfo,Figura antropomorfa frontal
+storage/reference_images/synthetic/syn_ant_0079.png,Santa Fe de Antioquia,Santa Fe de Antioquia,Antropomorfo,Figura con tocado ceremonial
+storage/reference_images/synthetic/syn_zoo_0080.png,Santa Fe de Antioquia,Santa Fe de Antioquia,Zoomorfo,Figura de serpiente
+storage/reference_images/synthetic/syn_zoo_0081.png,Santa Fe de Antioquia,Santa Fe de Antioquia,Zoomorfo,Animal cuadrúpedo estilizado
+storage/reference_images/synthetic/syn_geo_0082.png,Sopetrán,Sopetrán,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0083.png,Sopetrán,Sopetrán,Geométrico,Círculos concéntricos
+storage/reference_images/synthetic/syn_geo_0084.png,Amalfi,Amalfi,Geométrico,Espiral simple
+storage/reference_images/synthetic/syn_geo_0085.png,Amalfi,Amalfi,Geométrico,Círculos concéntricos
