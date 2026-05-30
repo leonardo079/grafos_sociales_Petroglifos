@@ -187,6 +187,10 @@ async def _persist_edges(
                 current_taxes = list(existing.shared_taxonomies or [])
                 if taxonomy and taxonomy not in current_taxes:
                     existing.shared_taxonomies = current_taxes + [taxonomy]
+                existing.is_provisional = not (
+                    existing.weight >= settings.edge_reliable_min_similarity
+                    and existing.evidence_count >= settings.edge_min_evidence
+                )
             else:
                 session.add(SiteGraphEdge(
                     site_a_id=id_a,
@@ -194,6 +198,7 @@ async def _persist_edges(
                     weight=round(score, 4),
                     shared_taxonomies=[taxonomy] if taxonomy else [],
                     evidence_count=1,
+                    is_provisional=True,
                 ))
             persisted += 1
 

@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS site_graph_edges (
     weight            FLOAT DEFAULT 0.0,
     shared_taxonomies JSONB DEFAULT '[]',
     evidence_count    INTEGER DEFAULT 1,
+    is_provisional    BOOLEAN NOT NULL DEFAULT TRUE,
     created_at        TIMESTAMPTZ DEFAULT now(),
     updated_at        TIMESTAMPTZ DEFAULT now(),
     CONSTRAINT uq_site_graph_edge UNIQUE (site_a_id, site_b_id)

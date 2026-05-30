@@ -27,7 +27,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from config.settings import settings
 from infrastructure.database.session import get_session
-from graphs.social_graph import PetroglyphSocialGraph
+from graphs.social_graph import PetroglyphSocialGraph, _compute_confidence_level
 
 log = structlog.get_logger(__name__)
 
@@ -193,6 +193,8 @@ async def get_site(
             "weight": e.weight,
             "evidence_count": e.evidence_count,
             "shared_taxonomies": e.shared_taxonomies,
+            "is_provisional": e.is_provisional,
+            "confidence_level": _compute_confidence_level(e.weight, e.evidence_count),
         }
         for e in edges
     ]

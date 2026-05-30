@@ -70,6 +70,7 @@ class SiteGraphEdge(Base):
     weight: Mapped[float] = mapped_column(sa.Float, default=0.0)
     shared_taxonomies: Mapped[list] = mapped_column(JSONB, default=list)
     evidence_count: Mapped[int] = mapped_column(sa.Integer, default=1)
+    is_provisional: Mapped[bool] = mapped_column(sa.Boolean, default=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(sa.DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(
         sa.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow

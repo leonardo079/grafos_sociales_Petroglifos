@@ -21,7 +21,19 @@ import networkx as nx
 log = structlog.get_logger(__name__)
 
 GRAPH_OUTPUT_DIR = Path("storage/graphs")
+
+
 GRAPH_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _compute_confidence_level(weight: float, evidence_count: int) -> str:
+    """Clasifica una arista en low/medium/high según similitud y cantidad de evidencias."""
+    from config.settings import settings
+    if weight >= 0.85 and evidence_count >= 3:
+        return "high"
+    if weight >= settings.edge_reliable_min_similarity and evidence_count >= settings.edge_min_evidence:
+        return "medium"
+    return "low"
 
 
 class PetroglyphSocialGraph:
@@ -70,6 +82,8 @@ class PetroglyphSocialGraph:
         taxonomy: str = "",
     ) -> None:
         """Agrega o actualiza una arista. Si existe, promedia el peso y acumula evidencia."""
+        from config.settings import settings
+
         if site_a == site_b:
             return
         for s in (site_a, site_b):
@@ -91,36 +105,53 @@ class PetroglyphSocialGraph:
                 evidence_count=1,
                 shared_taxonomies=[taxonomy] if taxonomy else [],
             )
+            data = self._G[site_a][site_b]
+
+        data["is_provisional"] = not (
+            data["weight"] >= settings.edge_reliable_min_similarity
+            and data["evidence_count"] >= settings.edge_min_evidence
+        )
         log.debug("graph_edge_updated", site_a=site_a, site_b=site_b, weight=weight)
 
     # ── Análisis ──────────────────────────────────────────────────────────────
 
+    def _reliable_subgraph(self) -> nx.Graph:
+        """Subgrafo con solo aristas confiables (is_provisional=False)."""
+        reliable = [
+            (u, v) for u, v, d in self._G.edges(data=True)
+            if not d.get("is_provisional", True)
+        ]
+        return self._G.edge_subgraph(reliable)
+
     def pagerank(self, alpha: float = 0.85) -> dict[str, float]:
-        """PageRank — sitios más centrales en la red iconográfica."""
-        if len(self._G) == 0:
+        """PageRank usando solo aristas confiables — mayor estabilidad entre corridas."""
+        G = self._reliable_subgraph()
+        if len(G) == 0:
             return {}
-        return nx.pagerank(self._G, alpha=alpha, weight="weight")
+        return nx.pagerank(G, alpha=alpha, weight="weight")
 
     def communities(self) -> list[set[str]]:
-        """Detección de comunidades con Louvain (greedy modularity como fallback)."""
-        if len(self._G) == 0:
+        """Comunidades Louvain sobre aristas confiables (greedy modularity como fallback)."""
+        G = self._reliable_subgraph()
+        if len(G) == 0:
             return []
         try:
             from community import best_partition  # type: ignore
-            partition = best_partition(self._G, weight="weight")
+            partition = best_partition(G, weight="weight")
             groups: dict[int, set[str]] = {}
             for node, comm_id in partition.items():
                 groups.setdefault(comm_id, set()).add(node)
             return list(groups.values())
         except ImportError:
-            comms = nx.algorithms.community.greedy_modularity_communities(self._G, weight="weight")
+            comms = nx.algorithms.community.greedy_modularity_communities(G, weight="weight")
             return [set(c) for c in comms]
 
     def betweenness_centrality(self) -> dict[str, float]:
-        """Centralidad de intermediación — sitios puente entre regiones."""
-        if len(self._G) == 0:
+        """Centralidad de intermediación sobre aristas confiables."""
+        G = self._reliable_subgraph()
+        if len(G) == 0:
             return {}
-        return nx.betweenness_centrality(self._G, weight="weight", normalized=True)
+        return nx.betweenness_centrality(G, weight="weight", normalized=True)
 
     def most_similar_sites(self, site_id: str, top_k: int = 5) -> list[dict]:
         """Top-k sitios más similares a uno dado, ordenados por peso de arista."""
@@ -132,6 +163,10 @@ class PetroglyphSocialGraph:
                 "weight": data["weight"],
                 "evidence_count": data.get("evidence_count", 1),
                 "shared_taxonomies": data.get("shared_taxonomies", []),
+                "is_provisional": data.get("is_provisional", True),
+                "confidence_level": _compute_confidence_level(
+                    data["weight"], data.get("evidence_count", 1)
+                ),
             }
             for nb, data in self._G[site_id].items()
         ]
@@ -218,7 +253,14 @@ class PetroglyphSocialGraph:
         return {
             "nodes": [{"id": n, **self._G.nodes[n]} for n in self._G.nodes],
             "edges": [
-                {"source": u, "target": v, **d}
+                {
+                    "source": u,
+                    "target": v,
+                    **d,
+                    "confidence_level": _compute_confidence_level(
+                        d.get("weight", 0.0), d.get("evidence_count", 1)
+                    ),
+                }
                 for u, v, d in self._G.edges(data=True)
             ],
             "summary": self.summary(),
@@ -429,6 +471,7 @@ class PetroglyphSocialGraph:
                 existing.weight = data["weight"]
                 existing.evidence_count = data.get("evidence_count", 1)
                 existing.shared_taxonomies = data.get("shared_taxonomies", [])
+                existing.is_provisional = data.get("is_provisional", True)
             else:
                 session.add(SiteGraphEdge(
                     site_a_id=id_a,
@@ -436,6 +479,7 @@ class PetroglyphSocialGraph:
                     weight=data["weight"],
                     evidence_count=data.get("evidence_count", 1),
                     shared_taxonomies=data.get("shared_taxonomies", []),
+                    is_provisional=data.get("is_provisional", True),
                 ))
         await session.commit()
         log.info("graph_synced_to_db", edges=self._G.number_of_edges())

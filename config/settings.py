@@ -15,7 +15,9 @@ class Settings(BaseSettings):
     # Similarity thresholds
     image_top_k: int = 5
     image_min_similarity: float = 0.60
-    edge_min_similarity: float = 0.70  # umbral para crear arista en el grafo social
+    edge_min_similarity: float = 0.70         # umbral mínimo para crear arista
+    edge_reliable_min_similarity: float = 0.76 # umbral del doble criterio de confiabilidad
+    edge_min_evidence: int = 2                  # evidencias mínimas para arista confiable
 
     # App
     env: str = "development"
