@@ -1,0 +1,270 @@
+{
+  "info": {
+    "name": "Grafos Sociales Rupestres",
+    "description": "Red de similitud iconográfica entre sitios arqueológicos — UPTC 2026\n\nBase URL: http://localhost:8000\n\nVariables de entorno:\n- base_url: http://localhost:8000\n- site_id: f8abfdc1-b4d2-43c0-87d7-e101decc50f7 (Piedras del Tunjo)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "site_id",
+      "value": "f8abfdc1-b4d2-43c0-87d7-e101decc50f7",
+      "type": "string",
+      "description": "UUID de 'Piedras del Tunjo'. Cambiar por cualquier id de GET /sites"
+    }
+  ],
+  "item": [
+    {
+      "name": "Sistema",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Verifica que la API y la base de datos estén disponibles."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sitios Rupestres",
+      "item": [
+        {
+          "name": "Listar todos los sitios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sites",
+              "host": ["{{base_url}}"],
+              "path": ["sites"]
+            },
+            "description": "Retorna todos los sitios rupestres registrados."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar sitios — filtro por departamento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sites?department=Boyacá",
+              "host": ["{{base_url}}"],
+              "path": ["sites"],
+              "query": [
+                {
+                  "key": "department",
+                  "value": "Boyacá"
+                }
+              ]
+            },
+            "description": "Filtra sitios por departamento (case-insensitive, búsqueda parcial)."
+          },
+          "response": []
+        },
+        {
+          "name": "Listar sitios — filtro por municipio",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sites?municipality=Villa",
+              "host": ["{{base_url}}"],
+              "path": ["sites"],
+              "query": [
+                {
+                  "key": "municipality",
+                  "value": "Villa"
+                }
+              ]
+            },
+            "description": "Filtra sitios por municipio."
+          },
+          "response": []
+        },
+        {
+          "name": "Detalle de un sitio",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sites/{{site_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["sites", "{{site_id}}"]
+            },
+            "description": "Retorna el detalle completo de un sitio incluyendo sus conexiones iconográficas con confidence_level e is_provisional por arista."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comparación",
+      "item": [
+        {
+          "name": "Comparar imagen (ruta local)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image_path\": \"storage/reference_images/gameza_espiral.jpg\",\n  \"site\": \"Gámeza\",\n  \"municipality\": \"Gámeza\",\n  \"department\": \"Boyacá\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/compare",
+              "host": ["{{base_url}}"],
+              "path": ["compare"]
+            },
+            "description": "Extrae el embedding EfficientNet-B0 de la imagen, busca similitudes en pgvector y actualiza el grafo social.\n\nCampos:\n- image_path: ruta local al archivo de imagen\n- site: nombre del sitio de la imagen\n- municipality: municipio (opcional)\n- department: departamento (opcional)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Grafo Social",
+      "item": [
+        {
+          "name": "Grafo completo (JSON)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph",
+              "host": ["{{base_url}}"],
+              "path": ["graph"]
+            },
+            "description": "Retorna todos los nodos y aristas del grafo. Cada arista incluye confidence_level (low/medium/high) e is_provisional."
+          },
+          "response": []
+        },
+        {
+          "name": "PageRank de sitios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/pagerank",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "pagerank"]
+            },
+            "description": "Ranking PageRank usando solo aristas confiables (is_provisional=false). Identifica los sitios más centrales en la red iconográfica."
+          },
+          "response": []
+        },
+        {
+          "name": "Comunidades iconográficas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/communities",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "communities"]
+            },
+            "description": "Grupos de sitios con alta similitud estilística entre sí (algoritmo Louvain sobre aristas confiables)."
+          },
+          "response": []
+        },
+        {
+          "name": "Centralidad de intermediación",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/betweenness",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "betweenness"]
+            },
+            "description": "Sitios que actúan como puentes entre regiones rupestres (betweenness centrality sobre aristas confiables)."
+          },
+          "response": []
+        },
+        {
+          "name": "Métricas de topología",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/metrics",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "metrics"]
+            },
+            "description": "Métricas del grafo completo: densidad, clustering coefficient, componentes conectados, diámetro, distribución de grado."
+          },
+          "response": []
+        },
+        {
+          "name": "Sitios similares a uno dado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/sites/{{site_id}}/similar?top_k=5",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "sites", "{{site_id}}", "similar"],
+              "query": [
+                {
+                  "key": "top_k",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Top-k sitios más similares iconográficamente al sitio dado. Incluye confidence_level e is_provisional por vecino."
+          },
+          "response": []
+        },
+        {
+          "name": "Exportar visualización PyVis (HTML)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/export",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "export"]
+            },
+            "description": "Descarga un HTML interactivo con PyVis (fondo oscuro, física de partículas). Abrir directamente en el navegador."
+          },
+          "response": []
+        },
+        {
+          "name": "Exportar visualización Plotly (HTML)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/graph/export/plotly",
+              "host": ["{{base_url}}"],
+              "path": ["graph", "export", "plotly"]
+            },
+            "description": "Descarga un HTML interactivo con Plotly (fondo blanco, nodos etiquetados, colores por comunidad). Abrir directamente en el navegador."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

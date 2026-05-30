@@ -113,6 +113,46 @@ class PetroglyphSocialGraph:
         )
         log.debug("graph_edge_updated", site_a=site_a, site_b=site_b, weight=weight)
 
+    def load_persisted_edge(
+        self,
+        site_a: str,
+        site_b: str,
+        *,
+        weight: float,
+        evidence_count: int,
+        shared_taxonomies: list[str] | None = None,
+        is_provisional: bool | None = None,
+    ) -> None:
+        """
+        Carga una arista con su estado ya persistido (sin tratarla como una
+        observación nueva). Usado al reconstruir el grafo desde la BD: preserva
+        weight y evidence_count tal cual están guardados.
+
+        Si is_provisional viene None, se recalcula desde los umbrales de settings.
+        """
+        from config.settings import settings
+
+        if site_a == site_b:
+            return
+        for s in (site_a, site_b):
+            if s not in self._G:
+                self.add_site(s)
+
+        if is_provisional is None:
+            is_provisional = not (
+                weight >= settings.edge_reliable_min_similarity
+                and evidence_count >= settings.edge_min_evidence
+            )
+
+        self._G.add_edge(
+            site_a,
+            site_b,
+            weight=round(weight, 4),
+            evidence_count=evidence_count,
+            shared_taxonomies=list(shared_taxonomies or []),
+            is_provisional=is_provisional,
+        )
+
     # ── Análisis ──────────────────────────────────────────────────────────────
 
     def _reliable_subgraph(self) -> nx.Graph:

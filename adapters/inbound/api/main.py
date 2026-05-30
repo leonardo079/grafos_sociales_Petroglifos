@@ -238,8 +238,14 @@ async def _build_graph_from_db(session: AsyncSession) -> PetroglyphSocialGraph:
         name_a = id_to_name.get(edge.site_a_id)
         name_b = id_to_name.get(edge.site_b_id)
         if name_a and name_b:
-            taxonomy = (edge.shared_taxonomies or [None])[0] or ""
-            graph.add_or_update_edge(name_a, name_b, weight=edge.weight, taxonomy=taxonomy)
+            graph.load_persisted_edge(
+                name_a,
+                name_b,
+                weight=edge.weight,
+                evidence_count=edge.evidence_count,
+                shared_taxonomies=edge.shared_taxonomies,
+                is_provisional=edge.is_provisional,
+            )
 
     return graph
 
