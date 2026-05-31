@@ -1,8 +1,95 @@
-image_path,site_name,municipality,taxonomy,reference_name
-storage/reference_images/img00000000.png,Piedras del Tunjo,Facatativá,Antropomorfo,Figura antropomorfa frontal con tocado
-storage/reference_images/img00000013.png,Piedras del Tunjo,Facatativá,Antropomorfo,Figura antropomorfa con extremidades extendidas
-storage/reference_images/img00000018.png,Gámeza,Gámeza,Antropomorfo,Petroglifo antropomorfo de Gámeza
-storage/reference_images/img00000024.png,Gámeza,Gámeza,Antropomorfo,Figura humana estilizada con adornos
-storage/reference_images/img00000034.png,Villa de Leyva,Villa de Leyva,Antropomorfo,Antropomorfo rupestre Villa de Leyva
-storage/reference_images/img00000035.png,Chivor,Chivor,Antropomorfo,Figura antropomorfa Chivor
-storage/reference_images/img00000036.png,Supatá,Supatá,Antropomorfo,Petroglifo antropomorfo Supatá
+image_path,site_name,municipality,department,taxonomy,reference_name
+storage/reference_images/antropomorfo/img00000000_png.rf.a4ce6596998eab0f0537cff6af132f11.jpg,El Colegio,El Colegio,Cundinamarca,Antropomorfo,Antropomorfo — img00000000
+storage/reference_images/antropomorfo/img00000005_png.rf.7d8b2dfc1fc450671d5f60f189bb2b3d.jpg,Sáchica,Sáchica,Boyacá,Antropomorfo,Antropomorfo — img00000005
+storage/reference_images/antropomorfo/img00000009_png.rf.e8f386176dd791c2073b9c0459cca5be.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Antropomorfo,Antropomorfo — img00000009
+storage/reference_images/antropomorfo/img00000010_png.rf.29e0ecaaaa6d32f1c381c2b38e5acb8a.jpg,Pandi,Pandi,Cundinamarca,Antropomorfo,Antropomorfo — img00000010
+storage/reference_images/antropomorfo/img00000013_png.rf.4be30548e54416645acaf5e04e8b121a.jpg,Tunja,Tunja,Boyacá,Antropomorfo,Antropomorfo — img00000013
+storage/reference_images/antropomorfo/img00000020_png.rf.0294d8e325ea00aa60021ee0a568f6a0.jpg,Sogamoso,Sogamoso,Boyacá,Antropomorfo,Antropomorfo — img00000020
+storage/reference_images/antropomorfo/img00000022_png.rf.7a1d2aac287d521dfad0f79772c0d20c.jpg,Sogamoso,Sogamoso,Boyacá,Antropomorfo,Antropomorfo — img00000022
+storage/reference_images/antropomorfo/img00000024_png.rf.0d465dfba245c3d59bb3cb3a3812c30e.jpg,Gámeza,Gámeza,Boyacá,Antropomorfo,Antropomorfo — img00000024
+storage/reference_images/antropomorfo/img00000026_png.rf.336c96cf4ce4cd024033374cae754788.jpg,Pandi,Pandi,Cundinamarca,Antropomorfo,Antropomorfo — img00000026
+storage/reference_images/antropomorfo/img00000027_png.rf.0a61fe53ed92565fba66206cfc2356f2.jpg,Sáchica,Sáchica,Boyacá,Antropomorfo,Antropomorfo — img00000027
+storage/reference_images/antropomorfo/img00000029_png.rf.c646e3a1f1177be9612a120c09cdd4db.jpg,El Colegio,El Colegio,Cundinamarca,Antropomorfo,Antropomorfo — img00000029
+storage/reference_images/antropomorfo/img00000031_png.rf.a7cc952b23732585133cf1d365b4152e.jpg,Pandi,Pandi,Cundinamarca,Antropomorfo,Antropomorfo — img00000031
+storage/reference_images/antropomorfo/img00000032_png.rf.c3fd87a9f1ab2ad947d00fd785cef280.jpg,Soacha,Soacha,Cundinamarca,Antropomorfo,Antropomorfo — img00000032
+storage/reference_images/antropomorfo/img00000034_png.rf.79d2876a5c40f8e192a429b7eb861f19.jpg,Sáchica,Sáchica,Boyacá,Antropomorfo,Antropomorfo — img00000034
+storage/reference_images/antropomorfo/img00000035_png.rf.38c7009c473da181c05f2c2a7da4a961.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Antropomorfo,Antropomorfo — img00000035
+storage/reference_images/antropomorfo/img00000036_png.rf.1a595243720ea0307fc4f7c7e9685fb8.jpg,Sutatausa,Sutatausa,Cundinamarca,Antropomorfo,Antropomorfo — img00000036
+storage/reference_images/antropomorfo/img00000041_png.rf.ce4e6c583568e2fe2e9bf2bff623709b.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Antropomorfo,Antropomorfo — img00000041
+storage/reference_images/antropomorfo/img00000048_png.rf.b74451ff9ad41f45424001b5a1a540f9.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Antropomorfo,Antropomorfo — img00000048
+storage/reference_images/antropomorfo/img00000050_png.rf.a4ccad7e429cfa438440d22f078eec3f.jpg,Sáchica,Sáchica,Boyacá,Antropomorfo,Antropomorfo — img00000050
+storage/reference_images/antropomorfo/img00000057_png.rf.2a2f5d0bab7db69a6dc97adf74098027.jpg,Sogamoso,Sogamoso,Boyacá,Antropomorfo,Antropomorfo — img00000057
+storage/reference_images/antropomorfo/img00000063_png.rf.0ca677f999d9cef8f6126dbdb5184d0e.jpg,Sogamoso,Sogamoso,Boyacá,Antropomorfo,Antropomorfo — img00000063
+storage/reference_images/antropomorfo/img00000064_png.rf.88e3b816d38d74c02ef57d22983af87c.jpg,Soacha,Soacha,Cundinamarca,Antropomorfo,Antropomorfo — img00000064
+storage/reference_images/antropomorfo/img00000070_png.rf.400d092b68f9e6be48f734aca3ebc550.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Antropomorfo,Antropomorfo — img00000070
+storage/reference_images/antropomorfo/img00000072_png.rf.2c3317256e60290f9fe638b0bd3d042c.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Antropomorfo,Antropomorfo — img00000072
+storage/reference_images/antropomorfo/img00000073_png.rf.cc1934e6a78025ce2da58167beee5ce5.jpg,Soacha,Soacha,Cundinamarca,Antropomorfo,Antropomorfo — img00000073
+storage/reference_images/antropomorfo/img00000075_png.rf.f65eb571dbde8fbf2c37d65b2b9a114d.jpg,Sogamoso,Sogamoso,Boyacá,Antropomorfo,Antropomorfo — img00000075
+storage/reference_images/antropomorfo/img00000091_png.rf.0a8ebffa847edabc74c0881397f29f6e.jpg,Pandi,Pandi,Cundinamarca,Antropomorfo,Antropomorfo — img00000091
+storage/reference_images/geometrico/img00000001_png.rf.f8a391755991087df3729c0f32094267.jpg,El Colegio,El Colegio,Cundinamarca,Geométrico,Geométrico — img00000001
+storage/reference_images/geometrico/img00000002_png.rf.2a634a26e5b6ffe0c14890daeec5972b.jpg,Pandi,Pandi,Cundinamarca,Geométrico,Geométrico — img00000002
+storage/reference_images/geometrico/img00000003_png.rf.52f93128bac30babf17fda71cdd1e9a2.jpg,Soacha,Soacha,Cundinamarca,Geométrico,Geométrico — img00000003
+storage/reference_images/geometrico/img00000004_png.rf.5653db1eba93d39612ef7cc611efc1e1.jpg,Sutatausa,Sutatausa,Cundinamarca,Geométrico,Geométrico — img00000004
+storage/reference_images/geometrico/img00000006_png.rf.da954d1a72663bad287a6e6d8ef549cd.jpg,Sogamoso,Sogamoso,Boyacá,Geométrico,Geométrico — img00000006
+storage/reference_images/geometrico/img00000007_png.rf.e44695537d3d87a72e6b5abf22912eac.jpg,Tibacuy,Tibacuy,Cundinamarca,Geométrico,Geométrico — img00000007
+storage/reference_images/geometrico/img00000008_png.rf.a0286026b298019faefe1aadef0fdcc6.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Geométrico,Geométrico — img00000008
+storage/reference_images/geometrico/img00000011_png.rf.428c0e1602befa1852588c7f9b179d78.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000011
+storage/reference_images/geometrico/img00000015_png.rf.4c0550437d3aad39e55c879a2085625d.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Geométrico,Geométrico — img00000015
+storage/reference_images/geometrico/img00000017_png.rf.07f7805638a6f6cfc7db0e8f0a249e6e.jpg,Gámeza,Gámeza,Boyacá,Geométrico,Geométrico — img00000017
+storage/reference_images/geometrico/img00000018_png.rf.5601889acf065f4aa75a6d379cf82af4.jpg,Pandi,Pandi,Cundinamarca,Geométrico,Geométrico — img00000018
+storage/reference_images/geometrico/img00000019_png.rf.980cd7c87f0d902e1e23206e7b9ec44e.jpg,Sutatausa,Sutatausa,Cundinamarca,Geométrico,Geométrico — img00000019
+storage/reference_images/geometrico/img00000021_png.rf.109168b221716522b19a999dccf0f790.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000021
+storage/reference_images/geometrico/img00000023_png.rf.5e24b74bae12031b06430eb5bc117324.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000023
+storage/reference_images/geometrico/img00000025_png.rf.17d9a320e527d86d53913ee0205b96d3.jpg,Gámeza,Gámeza,Boyacá,Geométrico,Geométrico — img00000025
+storage/reference_images/geometrico/img00000028_png.rf.bb06f15de672255ea154cf75e6560a49.jpg,Sogamoso,Sogamoso,Boyacá,Geométrico,Geométrico — img00000028
+storage/reference_images/geometrico/img00000033_png.rf.b3edff40c7c29d5806167f5734921432.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000033
+storage/reference_images/geometrico/img00000038_png.rf.879a1087170104c4780e6e778793ab81.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000038
+storage/reference_images/geometrico/img00000039_png.rf.a3e85254518ada37c48cbcb8bc5c87fa.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000039
+storage/reference_images/geometrico/img00000042_png.rf.36bd8bca20f5da462852df538643a22d.jpg,Sutatausa,Sutatausa,Cundinamarca,Geométrico,Geométrico — img00000042
+storage/reference_images/geometrico/img00000043_png.rf.c79c692f89264040e5c2a5111718062f.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000043
+storage/reference_images/geometrico/img00000045_png.rf.eeb444fac7efea54778cf0d912c0c68d.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000045
+storage/reference_images/geometrico/img00000046_png.rf.a755c91dbf7d1ef3a20c2de18486054d.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000046
+storage/reference_images/geometrico/img00000051_png.rf.07435cd2435e6461d2873ad67b8f2a83.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Geométrico,Geométrico — img00000051
+storage/reference_images/geometrico/img00000052_png.rf.d1979d1a8359827f6d7b89564d0293a1.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000052
+storage/reference_images/geometrico/img00000055_png.rf.6ed0b648b208c0d278deece5069cd3c4.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Geométrico,Geométrico — img00000055
+storage/reference_images/geometrico/img00000056_png.rf.82540ccebadfc45eae9c3e38ff2e554d.jpg,Pandi,Pandi,Cundinamarca,Geométrico,Geométrico — img00000056
+storage/reference_images/geometrico/img00000058_png.rf.0e92a69014eab23664fdffd484fac6a3.jpg,Tibacuy,Tibacuy,Cundinamarca,Geométrico,Geométrico — img00000058
+storage/reference_images/geometrico/img00000059_png.rf.596bde7883d584e623457d1d050eec5c.jpg,Soacha,Soacha,Cundinamarca,Geométrico,Geométrico — img00000059
+storage/reference_images/geometrico/img00000060_png.rf.8470ab9d45db34d3f6634ee752a1744f.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000060
+storage/reference_images/geometrico/img00000066_png.rf.5e2717aa53f36eec1e2d6cdd7282700f.jpg,Sutatausa,Sutatausa,Cundinamarca,Geométrico,Geométrico — img00000066
+storage/reference_images/geometrico/img00000067_png.rf.feb7ce6a1be85565158c49f196481d74.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000067
+storage/reference_images/geometrico/img00000068_png.rf.9747ea003a16aab04c69fbf7fe3bd0c5.jpg,Soacha,Soacha,Cundinamarca,Geométrico,Geométrico — img00000068
+storage/reference_images/geometrico/img00000069_png.rf.3b1ab9c03f327b7f85a4e2f7ae4f0068.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000069
+storage/reference_images/geometrico/img00000074_png.rf.025e60a326326d8ba3f57b1df31eae83.jpg,El Colegio,El Colegio,Cundinamarca,Geométrico,Geométrico — img00000074
+storage/reference_images/geometrico/img00000076_png.rf.b1f3e66acd6e7b7ab3ba7d460138bd16.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Geométrico,Geométrico — img00000076
+storage/reference_images/geometrico/img00000077_png.rf.27422e1ea27f85cb683988333ec508a6.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000077
+storage/reference_images/geometrico/img00000078_png.rf.3a2ce5109169009e059b1b188df82ceb.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Geométrico,Geométrico — img00000078
+storage/reference_images/geometrico/img00000080_png.rf.77e1d3d3fc63781c80b5513b7058fb80.jpg,Sogamoso,Sogamoso,Boyacá,Geométrico,Geométrico — img00000080
+storage/reference_images/geometrico/img00000081_png.rf.3fe0d94e6aba879357565a9b1b0ff096.jpg,Pandi,Pandi,Cundinamarca,Geométrico,Geométrico — img00000081
+storage/reference_images/geometrico/img00000082_png.rf.fdff9eaa3cbe2c429964f4d9ded1cf26.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000082
+storage/reference_images/geometrico/img00000083_png.rf.c1a7bc862319c285f00a7db263c5f744.jpg,Villa de Leyva,Villa de Leyva,Boyacá,Geométrico,Geométrico — img00000083
+storage/reference_images/geometrico/img00000084_png.rf.faf40e4142a6f9e0ccf917545ac1ec4d.jpg,El Colegio,El Colegio,Cundinamarca,Geométrico,Geométrico — img00000084
+storage/reference_images/geometrico/img00000085_png.rf.7a0afc7a26719d2d69ba70026ea3a082.jpg,Sogamoso,Sogamoso,Boyacá,Geométrico,Geométrico — img00000085
+storage/reference_images/geometrico/img00000086_png.rf.b0bb6bd74e7a12b5ea7b0874bc72603c.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000086
+storage/reference_images/geometrico/img00000087_png.rf.45a3b470e4551e11f4e14dd6f9099486.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000087
+storage/reference_images/geometrico/img00000088_png.rf.d8eb07554c9ec4f2441f416a684029a9.jpg,Sogamoso,Sogamoso,Boyacá,Geométrico,Geométrico — img00000088
+storage/reference_images/geometrico/img00000089_png.rf.a4152be538fe752f93e11d67b2430ba0.jpg,Sáchica,Sáchica,Boyacá,Geométrico,Geométrico — img00000089
+storage/reference_images/geometrico/img00000090_png.rf.cbe498c5f9651fd04df716246d7983c0.jpg,Sutatausa,Sutatausa,Cundinamarca,Geométrico,Geométrico — img00000090
+storage/reference_images/geometrico/img00000095_png.rf.e34aa2800129fb357c2dee54930d248f.jpg,Tunja,Tunja,Boyacá,Geométrico,Geométrico — img00000095
+storage/reference_images/geometrico/img00000096_png.rf.bbe4f0d22e0ad32dbdb90d4353b241a9.jpg,Tibacuy,Tibacuy,Cundinamarca,Geométrico,Geométrico — img00000096
+storage/reference_images/geometrico/img00000098_png.rf.cde008b3c6cdd3e666b7f278f09e51ec.jpg,El Colegio,El Colegio,Cundinamarca,Geométrico,Geométrico — img00000098
+storage/reference_images/geometrico/img00000099_png.rf.1f3b7595edf6659c02752c3fc4adf49d.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Geométrico,Geométrico — img00000099
+storage/reference_images/geometrico/img00000100_png.rf.ed8915ee7fae4cdd39b7e9441bb5228d.jpg,Gámeza,Gámeza,Boyacá,Geométrico,Geométrico — img00000100
+storage/reference_images/zoomorfo/img00000012_png.rf.59dc4138ddec30b6f5cb3a00bce800ee.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Zoomorfo,Zoomorfo — img00000012
+storage/reference_images/zoomorfo/img00000014_png.rf.b4e404310597dc58bc859aafbe2477ad.jpg,Piedras del Tunjo,Facatativá,Cundinamarca,Zoomorfo,Zoomorfo — img00000014
+storage/reference_images/zoomorfo/img00000037_png.rf.77a457015aaedec2e794dd4a3e1e3176.jpg,Sogamoso,Sogamoso,Boyacá,Zoomorfo,Zoomorfo — img00000037
+storage/reference_images/zoomorfo/img00000044_png.rf.993397c1c5665702f160b889ff4c8f1b.jpg,El Colegio,El Colegio,Cundinamarca,Zoomorfo,Zoomorfo — img00000044
+storage/reference_images/zoomorfo/img00000049_png.rf.de9bd9875803a16007a9c433bbd7e773.jpg,Tunja,Tunja,Boyacá,Zoomorfo,Zoomorfo — img00000049
+storage/reference_images/zoomorfo/img00000053_png.rf.6d7b98e33f7f7169adfba5b7faec6241.jpg,Pandi,Pandi,Cundinamarca,Zoomorfo,Zoomorfo — img00000053
+storage/reference_images/zoomorfo/img00000061_png.rf.9d5e34db2b63970d19dea28938f5b7cc.jpg,El Colegio,El Colegio,Cundinamarca,Zoomorfo,Zoomorfo — img00000061
+storage/reference_images/zoomorfo/img00000062_png.rf.b620e5c47c36d5085220dc1ac10a0df2.jpg,El Colegio,El Colegio,Cundinamarca,Zoomorfo,Zoomorfo — img00000062
+storage/reference_images/zoomorfo/img00000065_png.rf.50b3975e86de2ffeb422b4257ec0c4b5.jpg,Sáchica,Sáchica,Boyacá,Zoomorfo,Zoomorfo — img00000065
+storage/reference_images/zoomorfo/img00000071_png.rf.a2847230be2cf83349e2821cbd13f507.jpg,Zipaquirá,Zipaquirá,Cundinamarca,Zoomorfo,Zoomorfo — img00000071
+storage/reference_images/zoomorfo/img00000079_png.rf.46e829dc0d8ff4a6b362c03db9c3411d.jpg,El Colegio,El Colegio,Cundinamarca,Zoomorfo,Zoomorfo — img00000079
+storage/reference_images/zoomorfo/img00000094_png.rf.a80f3c5f1c6dea733a8e6bf1499f9ff3.jpg,Gámeza,Gámeza,Boyacá,Zoomorfo,Zoomorfo — img00000094
+storage/reference_images/zoomorfo/img00000097_png.rf.62378cb941a6fe0ce8a7cb86aad29541.jpg,Soacha,Soacha,Cundinamarca,Zoomorfo,Zoomorfo — img00000097

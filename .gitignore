@@ -28,6 +28,8 @@ storage/data/
 storage/cache/
 *.db
 *.sqlite
+storage/reference_images/
+
 
 # Visualizaciones generadas
 graphs/output/
