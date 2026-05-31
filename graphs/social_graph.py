@@ -392,7 +392,13 @@ class PetroglyphSocialGraph:
         if len(self._G) == 0:
             return ""
 
-        pos = nx.spring_layout(self._G, weight="weight", seed=42, k=2.5)
+        # Layout más espaciado: más iteraciones y mayor distancia óptima entre nodos.
+        # k escala con el tamaño para evitar que el grafo denso colapse en un cúmulo.
+        n_nodes = self._G.number_of_nodes()
+        k_spacing = 4.0 / (n_nodes ** 0.5) if n_nodes else 1.0
+        pos = nx.spring_layout(
+            self._G, weight="weight", seed=42, k=k_spacing, iterations=300
+        )
         pr = self.pagerank()
         communities_list = self.communities()
         node_community: dict[str, int] = {}
@@ -403,35 +409,50 @@ class PetroglyphSocialGraph:
         PALETTE = ["#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c"]
 
         # ── Aristas ───────────────────────────────────────────────────────────
-        edge_traces = []
+        # Se agrupan en 2 trazos (confiables / provisionales) en vez de 154 trazos
+        # individuales. Las provisionales quedan ocultas por defecto (toggle en leyenda).
+        # No se dibujan etiquetas de % sobre cada arista (iban muy saturadas);
+        # la similitud se ve al pasar el cursor por el punto medio.
+        rel_x, rel_y, prov_x, prov_y = [], [], [], []
+        hover_x, hover_y, hover_txt = [], [], []
         for u, v, data in self._G.edges(data=True):
             x0, y0 = pos[u]
             x1, y1 = pos[v]
             weight = data.get("weight", 0.5)
-            taxonomies = ", ".join(data.get("shared_taxonomies", [])) or "N/A"
-            edge_traces.append(go.Scatter(
-                x=[x0, x1, None], y=[y0, y1, None],
-                mode="lines",
-                line=dict(width=weight * 8, color="rgba(100,100,100,0.5)"),
-                hoverinfo="text",
-                text=f"<b>{u} ↔ {v}</b><br>Similitud: {weight:.2%}<br>Evidencias: {data.get('evidence_count', 1)}<br>Taxonomías: {taxonomies}",
-                showlegend=False,
-            ))
+            if data.get("is_provisional", True):
+                prov_x += [x0, x1, None]
+                prov_y += [y0, y1, None]
+            else:
+                rel_x += [x0, x1, None]
+                rel_y += [y0, y1, None]
+                # punto medio invisible con hover (solo para confiables)
+                taxonomies = ", ".join(data.get("shared_taxonomies", [])) or "N/A"
+                hover_x.append((x0 + x1) / 2)
+                hover_y.append((y0 + y1) / 2)
+                hover_txt.append(
+                    f"<b>{u} ↔ {v}</b><br>Similitud: {weight:.2%}<br>"
+                    f"Evidencias: {data.get('evidence_count', 1)}<br>Taxonomías: {taxonomies}"
+                )
 
-        # ── Etiquetas en el punto medio de cada arista ────────────────────────
+        edge_traces = [
+            go.Scatter(
+                x=rel_x, y=rel_y, mode="lines",
+                line=dict(width=1.4, color="rgba(90,95,120,0.45)"),
+                hoverinfo="skip", name="Conexiones confiables",
+            ),
+            go.Scatter(
+                x=prov_x, y=prov_y, mode="lines",
+                line=dict(width=0.6, color="rgba(160,160,170,0.18)"),
+                hoverinfo="skip", name="Provisionales",
+                visible="legendonly",  # ocultas al inicio; clic en leyenda para mostrar
+            ),
+            go.Scatter(
+                x=hover_x, y=hover_y, mode="markers",
+                marker=dict(size=6, color="rgba(0,0,0,0)"),
+                hoverinfo="text", text=hover_txt, showlegend=False,
+            ),
+        ]
         edge_label_traces = []
-        for u, v, data in self._G.edges(data=True):
-            x0, y0 = pos[u]
-            x1, y1 = pos[v]
-            weight = data.get("weight", 0.5)
-            edge_label_traces.append(go.Scatter(
-                x=[(x0 + x1) / 2], y=[(y0 + y1) / 2],
-                mode="text",
-                text=[f"{weight:.2%}"],
-                textfont=dict(size=10, color="#555"),
-                hoverinfo="skip",
-                showlegend=False,
-            ))
 
         # ── Nodos ─────────────────────────────────────────────────────────────
         node_traces = []
@@ -456,7 +477,7 @@ class PetroglyphSocialGraph:
                 marker=dict(size=sizes, color=color, line=dict(width=2, color="white")),
                 text=nodes_in_comm,
                 textposition="top center",
-                textfont=dict(size=13, color="#222"),
+                textfont=dict(size=11, color="#333"),
                 hovertext=hover_texts,
                 hoverinfo="text",
                 name=f"Comunidad {comm_id + 1}",
