@@ -264,7 +264,12 @@ async def export_graph_html(session: AsyncSession = Depends(get_session)) -> Fil
     html_path = graph.export_html()
     if not html_path or not Path(html_path).exists():
         raise HTTPException(status_code=500, detail="Error generando el grafo HTML.")
-    return FileResponse(html_path, media_type="text/html", filename="red_rupestre.html")
+    return FileResponse(
+        html_path,
+        media_type="text/html",
+        filename="red_rupestre.html",
+        content_disposition_type="inline",  # renderiza en el navegador en vez de descargar
+    )
 
 
 @app.get("/graph/export/plotly", tags=["Grafo Social"])
@@ -274,7 +279,12 @@ async def export_graph_plotly(session: AsyncSession = Depends(get_session)) -> F
     html_path = graph.export_plotly()
     if not html_path or not Path(html_path).exists():
         raise HTTPException(status_code=500, detail="Error generando el grafo Plotly.")
-    return FileResponse(html_path, media_type="text/html", filename="red_rupestre_plotly.html")
+    return FileResponse(
+        html_path,
+        media_type="text/html",
+        filename="red_rupestre_plotly.html",
+        content_disposition_type="inline",  # renderiza en el navegador en vez de descargar
+    )
 
 
 @app.get("/graph/pagerank", tags=["Grafo Social"])

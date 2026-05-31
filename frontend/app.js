@@ -50,6 +50,11 @@ $$(".tab").forEach((tab) => {
     $$(".panel").forEach((p) => p.classList.remove("active"));
     tab.classList.add("active");
     $("#tab-" + tab.dataset.tab).classList.add("active");
+
+    // Al abrir la pestaña de visualización, cargar Plotly automáticamente la 1ª vez
+    if (tab.dataset.tab === "visual" && !vizLoaded) {
+      loadViz("/graph/export/plotly", $("#vizPlotly"));
+    }
   });
 });
 
@@ -321,16 +326,52 @@ async function runAnalysis(kind) {
   }
 }
 
-// ── Visualizaciones (iframe a los endpoints de exportación HTML) ─────────────
+// ── Visualizaciones (iframe inline a los endpoints de exportación HTML) ──────
 
-function loadViz(path) {
+let vizLoaded = false;
+let vizTimeout = null;
+
+function loadViz(path, btn) {
   const url = baseUrl() + path;
-  $("#vizFrame").src = url;
+  const frame = $("#vizFrame");
+  const loading = $("#vizLoading");
+  const wrap = frame.parentElement;
+
+  // resaltar el botón activo
+  $("#vizPlotly").classList.remove("btn-primary");
+  $("#vizPyvis").classList.remove("btn-primary");
+  if (btn) btn.classList.add("btn-primary");
+
+  wrap.classList.remove("empty");
+  loading.innerHTML =
+    '<div class="viz-spinner"></div><p>Generando visualización…</p>' +
+    "<small>El servidor está construyendo el grafo, puede tardar unos segundos.</small>";
+  loading.classList.add("show");
   $("#vizOpenTab").href = url;
-  toast("Cargando visualización… puede tardar unos segundos", "");
+  frame.src = url;
+  vizLoaded = true;
+
+  // Si en 40s no carga (servidor caído/lento), avisar en vez de girar para siempre
+  clearTimeout(vizTimeout);
+  vizTimeout = setTimeout(() => {
+    if (loading.classList.contains("show")) {
+      loading.innerHTML =
+        '<p>⚠️ No se pudo cargar la visualización</p>' +
+        `<small>¿Está el servidor activo en ${baseUrl()}? Revisa la conexión arriba a la derecha e intenta de nuevo.</small>`;
+    }
+  }, 40000);
 }
-$("#vizPlotly").addEventListener("click", () => loadViz("/graph/export/plotly"));
-$("#vizPyvis").addEventListener("click", () => loadViz("/graph/export"));
+
+// Ocultar el overlay cuando el iframe termina de cargar el HTML
+$("#vizFrame").addEventListener("load", () => {
+  if (vizLoaded) {
+    clearTimeout(vizTimeout);
+    $("#vizLoading").classList.remove("show");
+  }
+});
+
+$("#vizPlotly").addEventListener("click", (e) => loadViz("/graph/export/plotly", e.currentTarget));
+$("#vizPyvis").addEventListener("click", (e) => loadViz("/graph/export", e.currentTarget));
 
 // ── GET /graph (JSON crudo) ──────────────────────────────────────────────────
 

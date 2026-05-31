@@ -325,6 +325,7 @@ class PetroglyphSocialGraph:
         net = Network(
             height=height, width="100%", bgcolor="#1a1a2e", font_color="white",
             notebook=False, directed=False,
+            cdn_resources="in_line",  # embebe vis-network en el HTML (evita 404 de lib/ al servir vía API)
         )
         net.set_options("""
         {
@@ -370,6 +371,13 @@ class PetroglyphSocialGraph:
             net.add_edge(u, v, value=weight, title=title, width=weight * 5)
 
         net.save_graph(str(out))
+
+        # PyVis no incluye <!DOCTYPE html>, lo que activa Quirks Mode en el navegador.
+        # Lo anteponemos para forzar Standards Mode.
+        html = out.read_text(encoding="utf-8")
+        if not html.lstrip().lower().startswith("<!doctype"):
+            out.write_text("<!DOCTYPE html>\n" + html, encoding="utf-8")
+
         log.info("graph_exported_html", path=str(out), nodes=len(self._G.nodes))
         return str(out)
 
