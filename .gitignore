@@ -33,7 +33,6 @@ storage/reference_images/
 
 # Visualizaciones generadas
 graphs/output/
-*.html
 
 # Logs
 *.log

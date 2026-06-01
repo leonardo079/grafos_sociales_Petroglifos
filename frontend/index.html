@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grafos Sociales Rupestres — Panel de Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-decor"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⛰️</span>
+      <div class="brand-text">
+        <h1>Red Iconográfica Rupestre</h1>
+        <p>Panel de control · Sitios arqueológicos de Colombia</p>
+      </div>
+    </div>
+    <div class="conn">
+      <div class="conn-field">
+        <label for="baseUrl">Servidor API</label>
+        <input id="baseUrl" type="text" value="http://localhost:8000" spellcheck="false" />
+      </div>
+      <button id="pingBtn" class="btn btn-ping">
+        <span id="healthDot" class="dot dot-unknown"></span>
+        <span>Conexión</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="sitios"><span class="tab-ico">🗺️</span> Sitios Rupestres</button>
+    <button class="tab" data-tab="comparar"><span class="tab-ico">🔍</span> Analizar Petroglifo</button>
+    <button class="tab" data-tab="similares"><span class="tab-ico">🧩</span> Afinidad Iconográfica</button>
+    <button class="tab" data-tab="analisis"><span class="tab-ico">📊</span> Análisis de Red</button>
+    <button class="tab" data-tab="visual"><span class="tab-ico">🌐</span> Visualización</button>
+    <button class="tab" data-tab="raw"><span class="tab-ico">🗃️</span> Datos del Grafo</button>
+  </nav>
+
+  <main>
+    <!-- ───────────────────────── SITIOS ───────────────────────── -->
+    <section id="tab-sitios" class="panel active">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-head">
+            <h2>Catálogo de Sitios</h2>
+            <span class="endpoint">GET /sites</span>
+          </div>
+          <p class="muted">Explora los sitios arqueológicos registrados. Filtra por ubicación.</p>
+          <div class="filters">
+            <input id="filterDept" type="text" placeholder="Departamento…" />
+            <input id="filterMuni" type="text" placeholder="Municipio…" />
+            <button id="loadSites" class="btn btn-primary">Buscar</button>
+          </div>
+          <div id="sitesCount" class="pill-count"></div>
+          <div class="table-wrap">
+            <table id="sitesTable">
+              <thead>
+                <tr><th>Sitio</th><th>Municipio</th><th>Depto</th><th>Taxonomía</th><th>Petr.</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>Ficha del Sitio</h2>
+            <span class="endpoint">GET /sites/{id}</span>
+          </div>
+          <p class="muted">Selecciona un sitio del catálogo para ver sus conexiones iconográficas.</p>
+          <div id="siteDetail" class="empty-state">
+            <span class="empty-ico">👈</span>
+            <p>Ningún sitio seleccionado</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────────────── COMPARAR ──────────────────────── -->
+    <section id="tab-comparar" class="panel">
+      <div class="card card-narrow">
+        <div class="card-head">
+          <h2>Reconocimiento de Petroglifo</h2>
+          <span class="endpoint">POST /compare</span>
+        </div>
+        <p class="muted">Extrae el embedding visual con EfficientNet-B0, busca motivos similares en el corpus y enlaza los sitios en el grafo.</p>
+        <div class="form">
+          <label>Ruta de la imagen <span class="req">en el servidor</span>
+            <input id="cmpImage" type="text" placeholder="storage/reference_images/ejemplo.jpg" />
+          </label>
+          <label>Sitio de origen
+            <input id="cmpSite" type="text" placeholder="Gámeza" />
+          </label>
+          <div class="form-row">
+            <label>Municipio
+              <input id="cmpMuni" type="text" placeholder="Gámeza" />
+            </label>
+            <label>Departamento
+              <input id="cmpDept" type="text" placeholder="Boyacá" />
+            </label>
+          </div>
+          <button id="compareBtn" class="btn btn-primary btn-lg">Analizar imagen</button>
+        </div>
+        <div id="compareResult"></div>
+      </div>
+    </section>
+
+    <!-- ──────────────────────── SIMILARES ─────────────────────── -->
+    <section id="tab-similares" class="panel">
+      <div class="card card-narrow">
+        <div class="card-head">
+          <h2>Sitios Más Afines</h2>
+          <span class="endpoint">GET /graph/sites/{id}/similar</span>
+        </div>
+        <p class="muted">Encuentra los vecinos iconográficos más cercanos de un sitio dentro del grafo.</p>
+        <div class="filters">
+          <select id="simSiteSelect"></select>
+          <input id="simTopK" type="number" value="5" min="1" max="30" title="Cantidad de resultados" />
+          <button id="simBtn" class="btn btn-primary">Buscar afines</button>
+        </div>
+        <div id="similarResult"></div>
+      </div>
+    </section>
+
+    <!-- ──────────────────────── ANÁLISIS ──────────────────────── -->
+    <section id="tab-analisis" class="panel">
+      <div class="grid-2">
+        <div class="card analysis-card">
+          <div class="card-head">
+            <h2>Sitios Más Influyentes</h2>
+            <span class="endpoint">GET /graph/pagerank</span>
+          </div>
+          <p class="muted">Ranking PageRank: los nodos más centrales de la red iconográfica.</p>
+          <button class="btn btn-primary" data-analysis="pagerank">Calcular influencia</button>
+          <div id="out-pagerank" class="analysis-out"></div>
+        </div>
+        <div class="card analysis-card">
+          <div class="card-head">
+            <h2>Sitios Puente</h2>
+            <span class="endpoint">GET /graph/betweenness</span>
+          </div>
+          <p class="muted">Centralidad de intermediación: conectores entre regiones estilísticas.</p>
+          <button class="btn btn-primary" data-analysis="betweenness">Detectar puentes</button>
+          <div id="out-betweenness" class="analysis-out"></div>
+        </div>
+        <div class="card analysis-card">
+          <div class="card-head">
+            <h2>Comunidades Estilísticas</h2>
+            <span class="endpoint">GET /graph/communities</span>
+          </div>
+          <p class="muted">Agrupación Louvain: familias de sitios con iconografía afín.</p>
+          <button class="btn btn-primary" data-analysis="communities">Agrupar sitios</button>
+          <div id="out-communities" class="analysis-out"></div>
+        </div>
+        <div class="card analysis-card">
+          <div class="card-head">
+            <h2>Métricas de la Red</h2>
+            <span class="endpoint">GET /graph/metrics</span>
+          </div>
+          <p class="muted">Topología global: densidad, clustering, diámetro y hubs.</p>
+          <button class="btn btn-primary" data-analysis="metrics">Medir red</button>
+          <div id="out-metrics" class="analysis-out"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────── VISUALIZACIONES ─────────────────── -->
+    <section id="tab-visual" class="panel">
+      <div class="card">
+        <div class="card-head">
+          <h2>Mapa Interactivo de la Red</h2>
+          <span class="endpoint">GET /graph/export · /graph/export/plotly</span>
+        </div>
+        <p class="muted">Renderiza el grafo completo. Plotly es más legible; PyVis tiene física de partículas.</p>
+        <div class="filters">
+          <button id="vizPlotly" class="btn btn-primary">Vista Plotly</button>
+          <button id="vizPyvis" class="btn">Vista PyVis</button>
+          <a id="vizOpenTab" class="btn btn-ghost" target="_blank" rel="noopener">Abrir en pestaña ↗</a>
+        </div>
+        <div class="iframe-wrap empty">
+          <div id="vizLoading" class="viz-loading">
+            <div class="viz-spinner"></div>
+            <p>Generando visualización…</p>
+            <small>El servidor está construyendo el grafo, puede tardar unos segundos.</small>
+          </div>
+          <iframe id="vizFrame" title="Visualización del grafo"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────────────── GRAFO JSON ─────────────────────── -->
+    <section id="tab-raw" class="panel">
+      <div class="card">
+        <div class="card-head">
+          <h2>Estructura Completa del Grafo</h2>
+          <span class="endpoint">GET /graph</span>
+        </div>
+        <p class="muted">Nodos, aristas y resumen estadístico en formato JSON.</p>
+        <button id="loadGraph" class="btn btn-primary">Cargar grafo</button>
+        <div id="graphSummary"></div>
+        <pre id="graphJson" class="json-out"></pre>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
