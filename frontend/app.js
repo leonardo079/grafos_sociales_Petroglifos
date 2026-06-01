@@ -339,7 +339,6 @@ function loadViz(path, btn) {
 
   // resaltar el botón activo
   $("#vizPlotly").classList.remove("btn-primary");
-  $("#vizPyvis").classList.remove("btn-primary");
   if (btn) btn.classList.add("btn-primary");
 
   wrap.classList.remove("empty");
@@ -371,7 +370,6 @@ $("#vizFrame").addEventListener("load", () => {
 });
 
 $("#vizPlotly").addEventListener("click", (e) => loadViz("/graph/export/plotly", e.currentTarget));
-$("#vizPyvis").addEventListener("click", (e) => loadViz("/graph/export", e.currentTarget));
 
 // ── GET /graph (JSON crudo) ──────────────────────────────────────────────────
 
