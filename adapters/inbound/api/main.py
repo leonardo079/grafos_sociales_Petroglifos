@@ -135,6 +135,34 @@ async def compare(
 
 # ── Sitios rupestres ───────────────────────────────────────────────────────────
 
+async def _corpus_stats(session: AsyncSession) -> dict[str, dict]:
+    """
+    Deriva por sitio (desde image_embeddings, la fuente de verdad del corpus):
+      - petroglyph_count: nº de imágenes de referencia del sitio
+      - dominant_taxonomy: taxonomía más frecuente entre esas imágenes
+
+    Se calcula al vuelo para que nunca se desincronice del corpus real.
+    """
+    from collections import Counter
+    from infrastructure.database.models.models import ImageEmbedding
+
+    rows = (await session.execute(
+        select(ImageEmbedding.site_name, ImageEmbedding.taxonomy)
+    )).all()
+
+    tax_by_site: dict[str, Counter] = {}
+    for site_name, taxonomy in rows:
+        tax_by_site.setdefault(site_name, Counter())[taxonomy] += 1
+
+    return {
+        name: {
+            "petroglyph_count": sum(counter.values()),
+            "dominant_taxonomy": counter.most_common(1)[0][0] if counter else "Indeterminado",
+        }
+        for name, counter in tax_by_site.items()
+    }
+
+
 @app.get("/sites", response_model=list[SiteResponse], tags=["Sitios"])
 async def list_sites(
     session: AsyncSession = Depends(get_session),
@@ -152,14 +180,15 @@ async def list_sites(
 
     result = await session.execute(stmt)
     sites = result.scalars().all()
+    stats = await _corpus_stats(session)
     return [
         SiteResponse(
             id=s.id,
             name=s.name,
             municipality=s.municipality,
             department=s.department,
-            dominant_taxonomy=s.dominant_taxonomy,
-            petroglyph_count=s.petroglyph_count,
+            dominant_taxonomy=stats.get(s.name, {}).get("dominant_taxonomy", s.dominant_taxonomy),
+            petroglyph_count=stats.get(s.name, {}).get("petroglyph_count", 0),
             conservation_status=s.conservation_status,
         )
         for s in sites
@@ -180,6 +209,8 @@ async def get_site(
     site = result.scalar_one_or_none()
     if not site:
         raise HTTPException(status_code=404, detail=f"Sitio {site_id} no encontrado.")
+
+    stats = (await _corpus_stats(session)).get(site.name, {})
 
     edges_result = await session.execute(
         select(SiteGraphEdge).where(
@@ -206,8 +237,8 @@ async def get_site(
         "department": site.department,
         "latitude": site.latitude,
         "longitude": site.longitude,
-        "dominant_taxonomy": site.dominant_taxonomy,
-        "petroglyph_count": site.petroglyph_count,
+        "dominant_taxonomy": stats.get("dominant_taxonomy", site.dominant_taxonomy),
+        "petroglyph_count": stats.get("petroglyph_count", 0),
         "conservation_status": site.conservation_status,
         "iconographic_connections": connections,
     }
