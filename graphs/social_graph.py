@@ -177,7 +177,9 @@ class PetroglyphSocialGraph:
             return []
         try:
             from community import best_partition  # type: ignore
-            partition = best_partition(G, weight="weight")
+            # random_state fijo: Louvain es no determinista (recorre nodos en orden
+            # aleatorio). Fijar la semilla hace la partición reproducible entre corridas.
+            partition = best_partition(G, weight="weight", random_state=42)
             groups: dict[int, set[str]] = {}
             for node, comm_id in partition.items():
                 groups.setdefault(comm_id, set()).add(node)
