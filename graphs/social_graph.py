@@ -193,7 +193,18 @@ class PetroglyphSocialGraph:
         G = self._reliable_subgraph()
         if len(G) == 0:
             return {}
-        return nx.betweenness_centrality(G, weight="weight", normalized=True)
+
+        # NetworkX interpreta `weight` como costo/distancia. En este proyecto el
+        # peso representa similitud, así que lo convertimos a distancia:
+        # mayor similitud => menor costo.
+        distance_graph = nx.Graph()
+        distance_graph.add_nodes_from(G.nodes(data=True))
+        for u, v, data in G.edges(data=True):
+            similarity = float(data.get("weight", 0.0))
+            distance = max(1e-6, 1.0 - similarity)
+            distance_graph.add_edge(u, v, weight=distance)
+
+        return nx.betweenness_centrality(distance_graph, weight="weight", normalized=True)
 
     def most_similar_sites(self, site_id: str, top_k: int = 5) -> list[dict]:
         """Top-k sitios más similares a uno dado, ordenados por peso de arista."""
